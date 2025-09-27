@@ -1,12 +1,12 @@
 :root {
-  /* Palette */
+ 
   --leaf-1: #d4e09b;
   --leaf-2: #edf0e1;
   --leaf-3: #456345;
   --leaf-4: #f19c79;
   --leaf-5: #a44a3f;
 
-  /* Tokens */
+  
   --page-bg: var(--leaf-2);
   --card-bg: #ffffff;
   --text: #22302a;
