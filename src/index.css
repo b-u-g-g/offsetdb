@@ -103,7 +103,7 @@ select { appearance: none; }
 }
 .modal-card .header,
 .modal-card .footer {
-  background: #689568;;            /* was missing ; and had an extra " */
+  background: #689568;;            
   border-color: var(--border);
 }
 /* Header bar */
