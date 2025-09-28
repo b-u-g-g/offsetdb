@@ -7,7 +7,7 @@
   --leaf-5: #a44a3f;
 
   
-  --page-bg: #22302a;
+  --page-bg: #c3c3c1;
   --card-bg: #ffffff;
   --text: #22302a;
   --text-muted: #5b6a61;
@@ -108,7 +108,7 @@ select { appearance: none; }
 }
 /* Header bar */
 .header-top {
-  background: var(--leaf-3);
+  background: var(--text);
   border-bottom: 1px solid var(--border);
   box-shadow: 0 1px 0 rgba(0,0,0,.02);
 }
