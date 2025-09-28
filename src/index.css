@@ -103,7 +103,7 @@ select { appearance: none; }
 }
 .modal-card .header,
 .modal-card .footer {
-  background: #689568;;            
+  background:#365c49;            
   border-color: var(--border);
 }
 /* Header bar */
