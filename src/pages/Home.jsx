@@ -6,7 +6,6 @@ import { downloadRetirementCertificate } from "../utils/downloadCertificate.js";
 import Card from "../components/Card.jsx";
 import CreditPopup from "../components/CreditPopup.jsx";
 
-// Left panel background image
 import panelImg from "../assets/panel.jpeg";
 
 const SIDEBAR_W = 260; // left panel width
@@ -46,9 +45,7 @@ export default function Home() {
 
   // ---- Sidebar Nav helpers ----
   const isActive = (path) =>
-    path === "/"
-      ? location.pathname === "/"
-      : location.pathname.startsWith(path);
+    path === "/" ? location.pathname === "/" : location.pathname.startsWith(path);
 
   const navItemStyle = (active) => ({
     textAlign: "left",
@@ -64,7 +61,7 @@ export default function Home() {
     textDecoration: "none",
     transition: "transform .18s ease, background .2s ease, box-shadow .18s ease",
     boxShadow: active ? "0 6px 18px rgba(0,0,0,0.18)" : "none",
-    transform: "translateZ(0)", // smoother pop on hover
+    transform: "translateZ(0)",
     display: "block",
   });
 
@@ -140,7 +137,6 @@ export default function Home() {
 
           {/* Sidebar nav */}
           <nav style={{ marginTop: 12, display: "grid", gap: 8 }}>
-            {/* Home */}
             <Link
               to="/"
               style={navItemStyle(isActive("/"))}
@@ -150,7 +146,6 @@ export default function Home() {
               <span className="nav-text" style={{ fontSize: 14 }}>Home</span>
             </Link>
 
-            {/* View All */}
             <Link
               to="/credits"
               style={navItemStyle(isActive("/credits"))}
@@ -168,8 +163,6 @@ export default function Home() {
         className="content-shift"
         style={{ background: "var(--page-bg)", marginLeft: SIDEBAR_W }}
       >
-        {/* ⛔ Top-right View All removed */}
-
         {/* Carousel */}
         <section style={{ padding: "16px 16px 24px" }}>
           <div style={{ maxWidth: 1200, margin: "0 auto" }}>
@@ -179,25 +172,31 @@ export default function Home() {
               style={{
                 position: "relative",
                 display: "grid",
-                gridTemplateColumns: "40px 1fr 40px",
+                gridTemplateColumns: "min-content 1fr min-content", // arrows hug the cards
                 alignItems: "center",
-                gap: 12,
+                gap: 2, // tighter than before
               }}
             >
-              <ArrowButton direction="left" onClick={prev} />
+              {/* pull arrows slightly into the carousel with negative margins */}
+              <ArrowButton direction="left" onClick={prev} style={{ marginRight: -8 }} />
+
+              {/* Cards size themselves from Card.jsx */}
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: `repeat(${visibleCards.length}, 1fr)`,
+                  gridTemplateColumns: `repeat(${visibleCards.length}, max-content)`,
                   gap: 16,
                   alignItems: "stretch",
+                  justifyContent: "center",
+                  justifyItems: "center",
                 }}
               >
                 {visibleCards.map((c) => (
                   <Card key={c.unic_id} credit={c} onOpen={() => setSelected(c)} />
                 ))}
               </div>
-              <ArrowButton direction="right" onClick={next} />
+
+              <ArrowButton direction="right" onClick={next} style={{ marginLeft: -8 }} />
             </div>
           </div>
         </section>
@@ -209,8 +208,9 @@ export default function Home() {
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
+                gridTemplateColumns: "repeat(auto-fit, minmax(0, max-content))",
                 gap: 16,
+                justifyItems: "center",
               }}
             >
               {retiredCredits.map((c) => (
@@ -231,39 +231,69 @@ export default function Home() {
   );
 }
 
-/* Modernized arrow button — position unchanged */
-function ArrowButton({ direction, onClick }) {
+// Left/Right chevron icon (base = RIGHT)
+function Chevron({ dir = "right", size = 22, style }) {
+  const rotation = dir === "left" ? 180 : 0; // flip for left
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      style={{ transform: `rotate(${rotation}deg)`, ...style }}
+      aria-hidden="true"
+      focusable="false"
+    >
+      {/* > shape */}
+      <polyline
+        points="9 6, 15 12, 9 18"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="3.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function ArrowButton({ direction, onClick, style }) {
   const isLeft = direction === "left";
+  const base = {
+    height: 56,                 // was 44
+    width: 56,                  // was 44
+    borderRadius: "50%",
+    border: "2px solid var(--ok)",
+    background: "rgba(255, 255, 255, 0.7)",
+    backdropFilter: "blur(6px)",
+    display: "grid",
+    placeItems: "center",
+    boxShadow: "0 4px 12px rgba(0,0,0,0.12)",
+    cursor: "pointer",
+    transition: "all 0.25s ease",
+    padding: 0,
+    color: "var(--text)",
+  };
   return (
     <button
       aria-label={isLeft ? "Previous" : "Next"}
       onClick={onClick}
-      style={{
-        height: 44,
-        width: 44,
-        borderRadius: "50%",
-        border: "none",
-        background: "rgba(255, 255, 255, 0.7)",
-        backdropFilter: "blur(6px)",
-        display: "grid",
-        placeItems: "center",
-        boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-        cursor: "pointer",
-        fontSize: "1.2rem",
-        transition: "all 0.3s ease",
-      }}
+      style={{ ...base, ...style }}
       onMouseEnter={(e) => {
         e.currentTarget.style.background = "var(--accent)";
-        e.currentTarget.style.color = "#fff";
         e.currentTarget.style.transform = "scale(1.05)";
+        e.currentTarget.style.boxShadow = "0 8px 20px rgba(0,0,0,0.18)";
+        e.currentTarget.style.color = "#fff";
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.background = "rgba(255, 255, 255, 0.7)";
-        e.currentTarget.style.color = "inherit";
         e.currentTarget.style.transform = "scale(1)";
+        e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.12)";
+        e.currentTarget.style.color = "var(--text)";
       }}
     >
-      {isLeft ? "←" : "→"}
+      {/* doubled chevron size */}
+      <Chevron dir={isLeft ? "left" : "right"} size={44} />
     </button>
   );
 }
+
