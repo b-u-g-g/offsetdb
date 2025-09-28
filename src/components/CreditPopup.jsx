@@ -4,8 +4,8 @@ export default function CreditPopup({
   credit,
   onClose,
   onDownload,
-  borderColor = "#456345",   // ← you set this when using the component
-  borderWidth = 1,           // optional: tweak thickness
+  borderColor = "#456345",   
+  borderWidth = 1,          
 }) {
   if (!credit) return null;
 
@@ -34,7 +34,7 @@ export default function CreditPopup({
           maxWidth: 520,
           background: "var(--card-bg)",
           color: "var(--text)",
-          border: `${borderWidth}px solid ${borderColor}`, // ← line border here
+          border: `${borderWidth}px solid ${borderColor}`, 
           borderRadius: 20,
           boxShadow: "0 10px 30px rgba(2,6,23,.18)",
           overflow: "hidden",

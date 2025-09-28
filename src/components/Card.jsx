@@ -1,9 +1,7 @@
-// src/components/Card.jsx
 import React from "react";
-import cardBg from "../assets/p.jpeg"; // background for the card
+import cardBg from "../assets/p.jpeg"; 
 
-// 👇 change this one number to resize all cards everywhere
-const CARD_W = 260; // px
+const CARD_W = 260; 
 
 export default function Card({ credit, onOpen }) {
   const isActive = credit.status === "Active";
@@ -12,17 +10,14 @@ export default function Card({ credit, onOpen }) {
     <div
       className="card"
       style={{
-        // --- width control ---
-        width: CARD_W,           // fixed width for all cards
+        width: CARD_W,           
         maxWidth: "100%",
         boxSizing: "border-box",
         margin: "0 auto",
         alignSelf: "center",
         flex: "0 0 auto",
-      
         position: "relative",
         backgroundImage: `url(${cardBg})`,
-      // backgroundColor:"#f19c79",
         backgroundSize: "cover",
         backgroundPosition: "center",
         border: "1px solid var(--border)",
@@ -98,7 +93,7 @@ export default function Card({ credit, onOpen }) {
           <strong>{credit.vintage}</strong>
         </div>
 
-        {/* View Details button (original color via .btn-light) */}
+        {/* View Details button */}
         <button
           onClick={onOpen}
           className="btn-light"
@@ -107,10 +102,10 @@ export default function Card({ credit, onOpen }) {
             padding: "10px 12px",
             borderRadius: 12,
             fontWeight: 700,
-            width: "100%", // stretch to card width
+            width: "100%", 
             cursor: "pointer",
             transition: "transform .15s ease, box-shadow .15s ease",
-            // no background/color here → uses your original .btn-light styles
+            
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.transform = "translateY(-1px)";

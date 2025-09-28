@@ -1,14 +1,12 @@
-// src/pages/Home.jsx
 import React, { useMemo, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import credits from "../credits.json";
 import { downloadRetirementCertificate } from "../utils/downloadCertificate.js";
 import Card from "../components/Card.jsx";
 import CreditPopup from "../components/CreditPopup.jsx";
-
 import panelImg from "../assets/panel.jpeg";
 
-const SIDEBAR_W = 260; // left panel width
+const SIDEBAR_W = 260;
 
 const THEME = {
   text: "var(--text)",
@@ -43,7 +41,7 @@ export default function Home() {
   const prev = () => setStart((s) => (s - 1 + total) % total);
   const next = () => setStart((s) => (s + 1) % total);
 
-  // ---- Sidebar Nav helpers ----
+  // Sidebar Nav helpers 
   const isActive = (path) =>
     path === "/" ? location.pathname === "/" : location.pathname.startsWith(path);
 
@@ -157,8 +155,6 @@ export default function Home() {
           </nav>
         </div>
       </aside>
-
-      {/* Shifted content area */}
       <main
         className="content-shift"
         style={{ background: "var(--page-bg)", marginLeft: SIDEBAR_W }}
@@ -172,15 +168,14 @@ export default function Home() {
               style={{
                 position: "relative",
                 display: "grid",
-                gridTemplateColumns: "min-content 1fr min-content", // arrows hug the cards
+                gridTemplateColumns: "min-content 1fr min-content", 
                 alignItems: "center",
-                gap: 2, // tighter than before
+                gap: 2, 
               }}
             >
-              {/* pull arrows slightly into the carousel with negative margins */}
+              
               <ArrowButton direction="left" onClick={prev} style={{ marginRight: -8 }} />
 
-              {/* Cards size themselves from Card.jsx */}
               <div
                 style={{
                   display: "grid",
@@ -231,9 +226,9 @@ export default function Home() {
   );
 }
 
-// Left/Right chevron icon (base = RIGHT)
+
 function Chevron({ dir = "right", size = 22, style }) {
-  const rotation = dir === "left" ? 180 : 0; // flip for left
+  const rotation = dir === "left" ? 180 : 0; 
   return (
     <svg
       width={size}
@@ -243,7 +238,7 @@ function Chevron({ dir = "right", size = 22, style }) {
       aria-hidden="true"
       focusable="false"
     >
-      {/* > shape */}
+    
       <polyline
         points="9 6, 15 12, 9 18"
         fill="none"
@@ -259,8 +254,8 @@ function Chevron({ dir = "right", size = 22, style }) {
 function ArrowButton({ direction, onClick, style }) {
   const isLeft = direction === "left";
   const base = {
-    height: 56,                 // was 44
-    width: 56,                  // was 44
+    height: 56,                 
+    width: 56,                  
     borderRadius: "50%",
     border: "2px solid var(--ok)",
     background: "rgba(255, 255, 255, 0.7)",
@@ -291,7 +286,7 @@ function ArrowButton({ direction, onClick, style }) {
         e.currentTarget.style.color = "var(--text)";
       }}
     >
-      {/* doubled chevron size */}
+      
       <Chevron dir={isLeft ? "left" : "right"} size={44} />
     </button>
   );
