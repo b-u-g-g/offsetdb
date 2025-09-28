@@ -20,9 +20,6 @@ function TopBar() {
           padding: 16,
         }}
       >
-        <Link to="/" className="brand" style={{ fontSize: 26, fontWeight: 800,color: "var(--accent)" }}>
-          •<span style={{ color: "white"}}>OFFSET</span>•
-        </Link>
 
      
      
