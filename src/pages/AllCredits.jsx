@@ -1,4 +1,3 @@
-// src/pages/AllCredits.jsx
 import React, { useMemo, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import credits from "../credits.json";
@@ -7,8 +6,6 @@ import { filterCredits } from "../utils/filterCredits.js";
 import { downloadRetirementCertificate } from "../utils/downloadCertificate.js";
 import Card from "../components/Card.jsx";
 import CreditPopup from "../components/CreditPopup.jsx";
-
-// Left panel background image (same as Home)
 import panelImg from "../assets/panel.jpeg";
 
 const SIDEBAR_W = 260;
@@ -33,7 +30,7 @@ export default function AllCredits() {
     [query, statusFilter]
   );
 
-  // ---- Sidebar Nav helpers (same behavior as Home) ----
+  // Sidebar Nav helpers
   const isActive = (path) =>
     path === "/" ? location.pathname === "/" : location.pathname.startsWith(path);
 
@@ -70,7 +67,7 @@ export default function AllCredits() {
 
   return (
     <>
-      {/* Responsive helper: collapse sidebar on small screens */}
+      
       <style>{`
         @media (max-width: 920px) {
           .content-shift { margin-left: 84px !important; }
@@ -80,7 +77,7 @@ export default function AllCredits() {
         }
       `}</style>
 
-      {/* Left image panel (same as Home) */}
+      {/* Left image panel */}
       <aside
         className="left-panel"
         style={{
@@ -146,7 +143,7 @@ export default function AllCredits() {
         </div>
       </aside>
 
-      {/* Shifted content area; Back arrow removed */}
+   
       <main className="content-shift" style={{ background: "var(--page-bg)", marginLeft: SIDEBAR_W }}>
         <div style={{ maxWidth: 1200, margin: "16px auto 0", padding: "0 16px" }}>
           <h1 style={{ marginTop: 0 }}>All Credits</h1>

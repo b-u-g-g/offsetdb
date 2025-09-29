@@ -20,10 +20,7 @@ function TopBar() {
           padding: 16,
         }}
       >
-        
-
-     
-     
+       
       </div>
     </div>
   );
