@@ -78,7 +78,6 @@ export default function Home() {
 
   return (
     <>
-      {/* Small CSS helper to collapse sidebar on very small screens */}
       <style>{`
         @media (max-width: 920px) {
           .content-shift { margin-left: 84px !important; }
