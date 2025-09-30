@@ -13,7 +13,7 @@
 * Styling separated via CSS variables; behavior stays in JavaScript.
 
 ### If the system had 10,000 credits, how would you keep the dashboard fast?
-Scenario: we will bw adding a data base for so many credits
+Scenario: we will be adding a data base for so many credits
 
 * Pre-filter and pre-aggregate data views
 * Cache query results
