@@ -25,3 +25,6 @@ Scenario: we will be adding a data base for so many credits
 * Minimize latency, by ensuring that data and servers are in the same physical datacenter and that they are as close to your users as possible
 * Use microservices, where appropriate. Certain parts of your application architecture will likely have very little usage. Other parts will probably struggle to keep up with the load. By splitting these up into independent systems, you can optimize your resources accordingly
 
+
+<img width="1900" height="911" alt="Screenshot 2025-11-26 000726" src="https://github.com/user-attachments/assets/da6504be-74a8-47cc-8277-74aa6925bfb4" />
+
